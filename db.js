@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const cfg = require('../db.config')
-{
+
 console.log(`Using database package v[${require('./version').v}]`)
 
 let url
