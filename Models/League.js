@@ -8,13 +8,23 @@ const leagueSchema = new Schema({
   participants: [{ type: ObjectId, ref: 'User' }],
   league_length: {
     type: String,
-    default: ['Weekly', 'Monthly', 'Quaterly', 'Yearly']
+    enum: ['Weekly', 'Monthly', 'Quaterly', 'Yearly']
+  },
+  league_start: {
+    type: Date,
+    default: Date.now
   },
   timestamps: {
-    start_date: { type: Date }
+    created_at: { type: Date }
   },
   history: [{
-    winner: { type: ObjectId, ref: 'User' }
+    winner: { type: ObjectId, ref: 'User' },
+    rankings: [{ type: ObjectId, ref: 'User' }],
+    start_date: { type: Date },
+    length: {
+      type: String,
+      enum: ['Weekly', 'Monthly', 'Quaterly', 'Yearly']
+    }
   }],
   private: { type: Boolean, default: true },
   invited_users: [{ type: ObjectId, ref: 'User' }]
